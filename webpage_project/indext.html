@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KeystoneGems</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <style>
+      :root {
+        --teal: #7C7560;
+        --teal-dark: #44422D;
+        --sand: #f8f1e7;
+        --gold: #f7c873;
+        --text: #020202;
+        --white: #ffffff;
+        --shadow: 0 12px 30px rgba(12, 52, 53, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(to bottom, #44422D, #ffffff 40%);
+        color: var(--text);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, 90%);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        background: var(--teal-dark);
+        color: var(--white);
+        font-size: 0.8rem;
+      }
+
+      .topbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 0;
+      }
+
+      .topbar span {
+        opacity: 0.9;
+      }
+
+      .header {
+        background: #ffffffe6;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid #fdfefe1a;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
+
+      .brand {
+        color: var(--teal-dark);
+        font-weight: 700;
+        font-size: 1.6rem;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .nav-button {
+        background: var(--teal);
+        color: var(--white);
+        padding: 0.9rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .hero {
+        padding: 4.5rem 0 3rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.05;
+        margin: 0 0 1rem;
+        color: var(--text);
+      }
+
+      .hero-copy p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #ffffff;
+        margin-bottom: 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        display: inline-block;
+        padding: 1rem 1.6rem;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .primary-btn {
+        background: var(--gold);
+        color: var(--text);
+      }
+
+      .secondary-btn {
+        background: #0a0a0a1a;
+        color: var(--teal-dark);
+      }
+
+      .stats {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.5rem;
+        color: var(--teal-dark);
+      }
+
+      .hero-visual {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .card-image {
+        min-height: 240px;
+        border-radius: 24px;
+        background-size: cover;
+        background-position: center;
+        box-shadow: var(--shadow);
+      }
+
+      .card-image.large {
+        min-height: 420px;
+      }
+
+      .card-image.one {
+        background-image: url(
+
+      .card-image.two {
+        background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80');
+      }
+
+      .card-image.three {
+        background-image: 
+      }
+
+      .section {
+        padding: 2.5rem 0;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        font-size: clamp(1.9rem, 3vw, 2.8rem);
+      }
+
+      .section-title a {
+        color: var(--teal-dark);
+        font-weight: 700;
+      }
+
+      .destination-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+
+      .destination-card {
+        background: var(--white);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .destination-card .image {
+        height: 260px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .destination-card:nth-child(1) .image {
+        background-image: url(https://www.google.com/search?client=safari&hs=Lhgq&sca_esv=76c3b7943658a61d&rls=en&sxsrf=APpeQntI--GK0-juk_3Q9nyyEo43-sGukQ:1790196634676&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832U1CFDVh7aOiOPRjGOuZstvTlhb57BMLU2AX3oUWdK8X3mDnCzyCEnc7h8lGlw5EvSZ26fSxO6e-YUNU5UNC4Z-QkMlYtOqVxf_HBzwLpFlfEPXmbEi7f4aO5vM2TJ9aFs1ucv4THC3qgcx1HggLF_Hugn40bzjMISXKixl2ZPzzGgsgQQ&q=hershey+park&sa=X&ved=2ahUKEwi1ofOTyoWXAxWPEVkFHTBgNmgQtKgLegQIFBAB&biw=1041&bih=536&dpr=2#ip=1&sv=CAMSXhoyKhBlLXVJaWFXRTcxM3FXemdNMg51SWlhV0U3MTNxV3pnTToOSjBLSjBidFI2QmI4MU0gBCokCg5pR1dHLUR1TVVaRmxnTRIQZS11SWlhV0U3MTNxV3pnTRgAMAEYByCdy_HUDkoIEAEYASABKAE);
+      }
+
+      .destination-card:nth-child(2) .image {
+        background-image: url(https://www.google.com/search?client=safari&hs=C2LB&sca_esv=41f184302346985e&rls=en&sxsrf=APpeQntQXRW8tRbptz-Nj66wmLJjZmJWqg:1790197188689&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832U1CFDVh7aOiOPRjGOuZstvTlhb57BMLU2AX3oUWdK8X3mDnCzyCEnc7h8lGlw5EvSZ26fSxO6e-YUNU5UNC4Z_j3XZ6i519AjkyVwMDsjBq0j2Xnqfo5ByJJ1_pHxL96bdLoUtlVumMAowN7dwtwUaE84R6_vMCmUoWk20tFblojFAwBw&q=gettysburg+park&sa=X&ved=2ahUKEwj2xImczIWXAxUsF1kFHV7QFCIQtKgLegQIFxAB&biw=1041&bih=536&dpr=2#ip=1&sv=CAMSURoyKhBlLXp1OFJ1TkEtVGtSQUxNMg56dThSdU5BLVRrUkFMTToOZmZJZjZfcFh1TUloak0gBCoXCgFzEhBlLXp1OFJ1TkEtVGtSQUxNGAEwARgHIOna_vMDSggQARgBIAEoAQ);
+      }
+
+      .destination-card:nth-child(3) .image {
+        background-image: url(https://www.google.com/search?client=safari&hs=J2LB&sca_esv=41f184302346985e&rls=en&sxsrf=APpeQnu-OVXcIQMqs44c4WFovp-u07vM3g:1790197562134&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832SMIiTl3t-JZ4hGJOxPbHYQR84vEJkyW62ul7Q3Bkhu9h6dfhdEk8gJ_MEzq5-UtW7-4vz_60Dl43ihG-W9GuhmqMAmTEuPNmj4-FflRWiBAS9IQ8f193NnLUK6MGqK8YxJZw3PA2oufkwFbduIZEwsRk731Ela3h2uP9tgCCAggfmAC7A&q=echo+dell&sa=X&ved=2ahUKEwjr6pLOzYWXAxVMGFkFHU4-F58QtKgLegQIFBAB&biw=1041&bih=536&dpr=2#sv=CAMSURoyKhBlLUkwclJKU1ZYX0RBcUNNMg5JMHJSSlNWWF9EQXFDTToOX3pUSmcxVnUxYXkzZE0gBCoXCgFzEhBlLUkwclJKU1ZYX0RBcUNNGAEwARgHIMLlhpAGSggQARgBIAEoAQ);
+      }
+
+      .destination-card .content {
+        padding: 1.2rem 1.2rem 1.5rem;
+      }
+
+      .destination-card h3 {
+        margin: 0 0 0.55rem;
+      }
+
+      .destination-card p {
+        margin: 0;
+        color: #536060;
+        line-height: 1.6;
+      }
+
+      .feature {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+
+      .feature-main,
+      .mini-cards {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .feature-main .large-panel {
+        min-height: 420px;
+        border-radius: 28px;
+        background-image: url(https://www.google.com/search?client=safari&hs=yM1V&sca_esv=41f184302346985e&rls=en&sxsrf=APpeQnv3ZwCq25JS8uLlBKC99dLetJCGjw:1790197624896&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832cHzLtKIoIlnooFJTj-JmRCX1izBCCOeDTAolT8E_4SIo2dbYXo-Y666q3fxQ_ZY6TxMOG-EYZYE6BNMk2y8Z6amuQEs5wwzw0XkmxJ8LtqM5C-U_jCvgYMtHs7rTcfcMKEjmrM5N_9_RcSNknjCM_OQrzTAzfbPKnAMgkFaAkqIcNkgVg&q=appalachian+trail+pa+hike&sa=X&ved=2ahUKEwjHw4nszYWXAxUiEVkFHWQkKrAQtKgLegQIFxAB&biw=1041&bih=536&dpr=2#ip=1&sv=CAMSURoyKhBlLTV3RHQ1eFdZYVY5M0lNMg41d0R0NXhXWWFWOTNJTToOQnpRQWlVM2d6Ni1FOE0gBCoXCgFzEhBlLTV3RHQ1eFdZYVY5M0lNGAEwARgHIPW6xOoJSggQARgBIAEoAQ);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-main .large-panel .overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, #0000001a, rgba(0,0,0,0.6));
+        display: flex;
+        align-items: end;
+        padding: 1.5rem;
+        color: var(--white);
+      }
+
+      .mini-cards .mini-card {
+        background: var(--white);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .mini-card .mini-image {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .mini-card:nth-child(1) .mini-image {
+        background-image: url(https://www.google.com/search?client=safari&hs=Lhgq&sca_esv=76c3b7943658a61d&rls=en&sxsrf=APpeQntI--GK0-juk_3Q9nyyEo43-sGukQ:1790196634676&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832U1CFDVh7aOiOPRjGOuZstvTlhb57BMLU2AX3oUWdK8X3mDnCzyCEnc7h8lGlw5EvSZ26fSxO6e-YUNU5UNC4Z-QkMlYtOqVxf_HBzwLpFlfEPXmbEi7f4aO5vM2TJ9aFs1ucv4THC3qgcx1HggLF_Hugn40bzjMISXKixl2ZPzzGgsgQQ&q=hershey+park&sa=X&ved=2ahUKEwi1ofOTyoWXAxWPEVkFHTBgNmgQtKgLegQIFBAB&biw=1041&bih=536&dpr=2#ip=1&sv=CAMSXhoyKhBlLXVJaWFXRTcxM3FXemdNMg51SWlhV0U3MTNxV3pnTToOSjBLSjBidFI2QmI4MU0gBCokCg5pR1dHLUR1TVVaRmxnTRIQZS11SWlhV0U3MTNxV3pnTRgAMAEYByCdy_HUDkoIEAEYASABKAE);
+      }
+
+      .mini-card:nth-child(2) .mini-image {
+        background-image: url(https://www.google.com/search?client=safari&hs=2M1V&sca_esv=41f184302346985e&rls=en&sxsrf=APpeQnsrYIe-xWDF-kcaKTiXZKkvAuKpKw:1790197878120&q=jim+thorpe+town+pa&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rGPqftHFIA3h7zGvSZvjdVaU7FYgvuj2sjdBxGtTcfha5h2nG5OyUx5K2hEx7l7_ejhGCwl-eCRhkrWbv9a0s6sFB9_jkldMlS-DB4Y3Aa-lWEVRMZ-7DcxsQ91sB3B_T9ctK4Q&udm=2&sa=X&ved=2ahUKEwiGg-nkzoWXAxXDKFkFHYcHKfcQxKsJKAN6BAgWEAE&ictx=0&biw=1041&bih=536&dpr=2#sv=CAMSURoyKhBlLXlEZHRCSnllOEdYSXlNMg55RGR0Qkp5ZThHWEl5TToOMkhILTNxQ3F1UnctR00gBCoXCgFzEhBlLXlEZHRCSnllOEdYSXlNGAEwARgHIPz2oPQHSggQARgBIAEoAQ);
+      }
+
+      .mini-card .mini-content {
+        padding: 1rem 1.1rem 1.3rem;
+      }
+
+      .mini-card h4 {
+        margin: 0 0 0.4rem;
+      }
+
+      .mini-card p {
+        margin: 0;
+        color: #536060;
+        line-height: 1.5;
+      }
+
+      .cta {
+        background: linear-gradient(135deg, #44422D, #44422D;
+        color: var(--white);
+        padding: 2.5rem 0;
+        text-align: center;
+        border-radius: 28px;
+        margin: 2rem auto 4rem;
+        width: min(1120px, 90%);
+      }
+
+      .cta h2 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(2rem, 3vw, 3rem);
+      }
+
+      .cta p {
+        margin: 0 0 1.4rem;
+        opacity: 0.9;
+      }
+
+      .cta .primary-btn {
+        background: var(--white);
+        color: var(--teal-dark);
+      }
+
+      footer {
+        background: #f3f6f6;
+        padding: 2rem 0 3rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        color: #fdfdfd;
+      }
+
+      @media (max-width: 860px) {
+        .hero-grid,
+        .feature,
+        .destination-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1rem;
+        }
+
+        .nav-links {
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <span>Explore Central PA unforgettable adventures</span>
+        <span>Plan your next trip today</span>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container nav">
+        <a href="#" class="brand">KeystoneGems</a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Destinations</a></li>
+          <li><a href="#">Experiences</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <a href="#" class="nav-button">Book Now</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1>Finding Hidden Gems in Central PA</h1>
+            <p>
+              Discover fun, education, and adventure in the heart of Pennsylvania.
+            </p>
+            <div class="hero-actions">
+              <a href="#" class="primary-btn">Start Your Adventure</a>
+              <a href="#" class="secondary-btn">Build Your Road Trip</a>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <strong>100+</strong>
+                <span>Destinations</span>
+              </div>
+              <div class="stat">
+                <strong>4.9/5</strong>
+                <span>Traveler Rating</span>
+              </div>
+              <div class="stat">
+                <strong>18k</strong>
+                <span>Happy Travelers</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="card-image large one"></div>
+            <div class="card-image two"></div>
+            <div class="card-image three" style="grid-column: 1 / -1;"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Popular destinations</h2>
+            <a href="#">See all</a>
+          </div>
+
+          <div class="destination-grid">
+            <article class="destination-card">
+              <div class="image"></div>
+              <div class="content">
+                <h3>Hershey Park, Hershey, PA</h3>
+                <p>Thrilling rides and water park attractions for the family, along with sweet treats and food for the day.</p>
+              </div>
+            </article>
+
+            <article class="destination-card">
+              <div class="image"></div>
+              <div class="content">
+                <h3>Gettysburg National Military Park, Gettysburg, PA</h3>
+                <p>Explore a historic battlefield or enjoy a horseride around the park with a guide all while learning about Civil War history that took place here in Pennsylvania.</p>
+              </div>
+            </article>
+
+            <article class="destination-card">
+              <div class="image"></div>
+              <div class="content">
+                <h3>Echo Dell, Hummlestown, PA</h3>
+                <p>Explore the wonders of nature here in this ever growing limestone cave that is 440 million years old! Feel free to visit any time and let a guide show you around this great wonder.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Explore More</h2>
+            <a href="#">See all</a>
+          </div>
+
+          <div class="feature">
+            <div class="feature-main">
+              <div class="large-panel">
+                <div class="overlay">
+                  <div>
+                    <h3>Summertime hiking the Appalachian Trail</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-cards">
+              <article class="mini-card">
+                <div class="mini-image"></div>
+                <div class="mini-content">
+                  <h4>WW11 Air Show</h4>
+                  <p>WW11 Air Show every summer in Reading, PA. Grab a hot dog and enjoy the display of aircraft and World War history on display on the tarmac.</p>
+                </div>
+              </article>
+
+              <article class="mini-card">
+                <div class="mini-image"></div>
+                <div class="mini-content">
+                  <h4>Jim Thorpe, PA</h4>
+                  <p>Tucked away in in Carbon County, Jim Thorpe offers a unique blend of 19th-century Victorian architecture, rich coal mining history, and dramatic mountain scenery. Known as the "Little Switzerland of America" this town is known for its outdoor recreation.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="cta">
+      <h2>Ready for your next adventure?</h2>
+      <a href="#" class="primary-btn">Plan My Trip</a>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© 2026 KeystoneGems</div>
+        <div>hello@keystonegems.com</div>
+      </div>
+    </footer>
+  </body>
+</html>
