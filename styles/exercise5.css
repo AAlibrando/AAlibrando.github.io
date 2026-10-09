@@ -1,0 +1,96 @@
+body {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgb(101, 236, 231);
+  }
+  body {
+    background-image: url('/Users/adriannaalibrando/Desktop/Images/goldfishies copy.png');
+    alt="goldfishies copy.png";
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+ 
+
+h1 {
+    text-align: center;
+    font-family: "hey-eloise-watercolor", sans-serif;
+}
+#primary-nav ul {
+ padding-left: 0;
+ display: flex;
+ }
+
+#primary-nav a { 
+  background-color: rgb(122, 242, 140);
+  display: block; 
+  padding: 1em;
+
+} 
+
+#primary-nav li { 
+  list-style: none; 
+  display: inline-block;
+}
+
+#toggle-nav-btn {
+    display: none;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+
+@media (max-width: 767px) { 
+  #primary-nav li { 
+  display:block; 
+  .inner {overflow: hidden;}
+    #toggle-nav-btn {
+        display: block;
+    }
+    body.nav-open #primary-nav {
+      grid-template-rows: 1fr;
+    }
+    .inner {
+      overflow: hidden;
+    }
+    #toggle-nav-btn {
+      display: block; 
+    }
+    main { 
+        background-color: rgb(0, 102, 255);
+    }       
+}
+
+ #primary-nav ul {
+    flex-direction: column;
+  }
+.grid {
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+  a:hover {
+    color: rgb(206, 231, 165);
+  }
+  a:active {
+    color: rgb(57, 231, 34);
+  }
+  .grid{
+    display: flex;
+    gap: 25px;
+  }
+
+  .grid img {
+    width: 500px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50px;
+  }
