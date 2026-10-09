@@ -1,0 +1,216 @@
+:root {
+  --nav-bg: rgb(158, 218, 238);
+  --nav-link-bg: rgb(100, 237, 134);
+  --nav-link-hover: rgb(42, 173, 78);
+  --text-color: #1b1b1b;
+  --panel-bg: rgba(255, 255, 255, 0.78);
+  --panel-border: rgba(255, 255, 255, 0.45);
+  --card-overlay: rgba(15, 32, 46, 0.35);
+  --card-text: #040404;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    url('goldfishies copy.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#primary-nav {
+  background-color: var(--nav-bg);
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid rgba(255, 254, 254, 0.1);
+}
+
+#primary-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+#primary-nav li {
+  margin: 0;
+}
+
+#primary-nav a {
+  display: block;
+  background-color: var(--nav-link-bg);
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#primary-nav a:hover,
+#primary-nav a:focus {
+  background-color: var(--nav-link-hover);
+  transform: translateY(-1px);
+}
+
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem 2rem;
+}
+
+section {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 16px rgba(3, 173, 207, 0.213);
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.gallery,
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.feature-card,
+.art-card {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+  color: var(--card-text);
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover,
+.art-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.feature-card::before,
+.art-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.feature-card span,
+.art-card span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.639);
+  backdrop-filter: blur(3px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.feature-card--home {
+  background-image: url("goldfishies copy.png");
+}
+
+.feature-card--fun {
+  background-image: url("Surfing copy.jpg");
+}
+
+.feature-card--cool {
+  background-image: url("lavalampxbox copy.jpg");
+}
+
+.art-card--frutiger {
+  background-image: url("Surfing copy.jpg");
+}
+
+.art-card--videogame {
+  background-image: url("glass_fish copy.png");
+}
+
+.art-card--aesthetic {
+  background-image: url("moreflowers copy.png");
+}
+
+.art-card--retro {
+  background-image: url("test2 copy.png");
+}
+
+.art-card--neon {
+  background-image: url("Untitled-2.jpeg");
+}
+
+.art-card--xbox {
+  background-image: url("lavalampxbox copy.jpg");
+}
+
+.art-card--playstation {
+  background-image: url("PS2memorycard2 copy 2.png");
+}
+
+.art-card--studio {
+  background-image: url("spine copy.jpg");
+}
+
+.art-card--soft {
+  background-image: url("brainflower copy.png");
+}
+
+@media (max-width: 768px) {
+  .gallery,
+  .card-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #primary-nav ul {
+    display: block;
+  }
+
+  #primary-nav li + li {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .gallery,
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 1.25rem;
+  }
+}
