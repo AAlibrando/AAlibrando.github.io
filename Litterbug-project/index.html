@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#b5d5f3">
+    <title>Spot the Litterbug</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #23321c;
+        background: #e9f2f7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+      }
+
+      main {
+        width: min(100%, 1500px);
+        margin: 0 auto;
+        padding: 18px;
+      }
+
+      .instructions {
+        margin: 0 0 12px;
+        color: #344632;
+        font-size: 15px;
+        font-weight: 650;
+        text-align: center;
+      }
+
+      .scene {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border: 1px solid rgb(35 50 28 / 16%);
+        border-radius: 12px;
+        background: #b5d5f3;
+        box-shadow: 0 12px 34px rgb(26 47 28 / 15%);
+      }
+
+      .scene-image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .hotspot {
+        position: absolute;
+        z-index: 1;
+        display: grid;
+        width: clamp(42px, 4.2vw, 68px);
+        aspect-ratio: 1;
+        padding: 0;
+        place-items: center;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+        transition: border-color 140ms ease, background-color 140ms ease, scale 140ms ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .hotspot:hover,
+      .hotspot[aria-expanded="true"] {
+        border-color: rgb(255 255 255 / 90%);
+        background: rgb(255 255 255 / 16%);
+        scale: 1.08;
+      }
+
+      .hotspot:focus-visible,
+      .callout-close:focus-visible {
+        outline: 3px solid #163be1;
+        outline-offset: 3px;
+      }
+
+      .hotspot-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+      }
+
+      .callout {
+        position: absolute;
+        z-index: 2;
+        width: min(290px, calc(100% - 24px));
+        padding: 16px 42px 16px 17px;
+        border: 1px solid rgb(35 50 28 / 16%);
+        border-radius: 12px;
+        background: #fffef9;
+        box-shadow: 0 8px 26px rgb(20 32 19 / 24%);
+        color: #263322;
+      }
+
+      .callout[hidden] {
+        display: none;
+      }
+
+      .callout h2 {
+        margin: 0 0 6px;
+        font-size: 16px;
+        line-height: 1.25;
+      }
+
+      .callout p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .callout-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: grid;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        place-items: center;
+        border: 0;
+        border-radius: 50%;
+        background: #edf2e8;
+        color: #263322;
+        font: inherit;
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      @media (max-width: 600px) {
+        main {
+          padding: 10px;
+        }
+
+        .instructions {
+          font-size: 14px;
+        }
+
+        .scene {
+          border-radius: 8px;
+        }
+
+        .hotspot {
+          width: 44px;
+        }
+
+        .callout {
+          padding: 13px 40px 13px 14px;
+        }
+
+        .callout h2 {
+          font-size: 15px;
+        }
+
+        .callout p {
+          font-size: 13px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="instructions">Tap or click each blue bug to discover the litter around it.</p>
+      <section class="scene" aria-label="Interactive litterbug illustration">
+        <img
+          class="scene-image"
+          src="spot-the-litterbug.png"
+          alt="A hand-drawn wetland scene with litter scattered in the water and along the shore."
+        >
+
+        <button class="hotspot" type="button" style="left:45.5%;top:8.5%"
+          aria-label="About the litterbug" aria-expanded="false"
+          data-title="Meet the litterbug"
+          data-text="A litterbug is someone who leaves trash behind. Tap the other blue bugs to find the litter hidden in this wetland.">
+          <span class="hotspot-label">About the litterbug</span>
+        </button>
+        <button class="hotspot" type="button" style="left:44.7%;top:32.9%"
+          aria-label="Plastic bag" aria-expanded="false"
+          data-title="Plastic bag"
+          data-text="Plastic bags can blow into waterways, where wildlife may mistake them for food or become tangled. Secure and reuse bags, or put them in the right bin.">
+          <span class="hotspot-label">Plastic bag</span>
+        </button>
+        <button class="hotspot" type="button" style="left:39.6%;top:44.3%"
+          aria-label="Cigarette butt" aria-expanded="false"
+          data-title="Cigarette butt"
+          data-text="Cigarette filters can contain plastic and leave harmful chemicals behind. Let the butt cool, then put it in a proper waste bin.">
+          <span class="hotspot-label">Cigarette butt</span>
+        </button>
+        <button class="hotspot" type="button" style="left:45.75%;top:55.6%"
+          aria-label="Plastic straw" aria-expanded="false"
+          data-title="Plastic straw"
+          data-text="A lightweight straw can wash into the water and become litter. Choose a reusable straw, or skip one when you can.">
+          <span class="hotspot-label">Plastic straw</span>
+        </button>
+        <button class="hotspot" type="button" style="left:25.7%;top:61.7%"
+          aria-label="Can and bottle" aria-expanded="false"
+          data-title="Can and bottle"
+          data-text="Containers left on the shore can pollute the water and put wildlife at risk. Take them with you and recycle them where accepted.">
+          <span class="hotspot-label">Can and bottle</span>
+        </button>
+        <button class="hotspot" type="button" style="left:26.95%;top:94.1%"
+          aria-label="Discarded fishing line" aria-expanded="false"
+          data-title="Discarded fishing line"
+          data-text="Lost fishing line can entangle wildlife and persist in the environment. Keep fishing gear secure and dispose of damaged line properly.">
+          <span class="hotspot-label">Discarded fishing line</span>
+        </button>
+
+        <aside class="callout" id="callout" aria-live="polite" hidden>
+          <button class="callout-close" type="button" aria-label="Close information">×</button>
+          <h2></h2>
+          <p></p>
+        </aside>
+      </section>
+    </main>
+    <script>
+      const scene = document.querySelector(".scene");
+      const callout = document.querySelector(".callout");
+      const heading = callout.querySelector("h2");
+      const message = callout.querySelector("p");
+      const closeButton = callout.querySelector(".callout-close");
+      const hotspots = [...document.querySelectorAll(".hotspot")];
+      let activeHotspot = null;
+
+      function positionCallout(hotspot) {
+        const sceneRect = scene.getBoundingClientRect();
+        const hotspotRect = hotspot.getBoundingClientRect();
+        const gap = 14;
+        const padding = 12;
+        const width = callout.offsetWidth;
+        const height = callout.offsetHeight;
+        const x = hotspotRect.left - sceneRect.left + hotspotRect.width / 2;
+        const y = hotspotRect.top - sceneRect.top + hotspotRect.height / 2;
+        const right = x + gap + width <= sceneRect.width - padding;
+        const left = right ? x + gap : x - gap - width;
+
+        callout.style.left = `${Math.max(padding, Math.min(left, sceneRect.width - width - padding))}px`;
+        callout.style.top = `${Math.max(padding, Math.min(y - height / 2, sceneRect.height - height - padding))}px`;
+      }
+
+      function closeCallout() {
+        callout.hidden = true;
+        callout.removeAttribute("style");
+        hotspots.forEach((hotspot) => hotspot.setAttribute("aria-expanded", "false"));
+        activeHotspot = null;
+      }
+
+      hotspots.forEach((hotspot) => {
+        hotspot.addEventListener("click", () => {
+          if (activeHotspot === hotspot) {
+            closeCallout();
+            return;
+          }
+
+          activeHotspot = hotspot;
+          hotspots.forEach((item) => item.setAttribute("aria-expanded", String(item === hotspot)));
+          heading.textContent = hotspot.dataset.title;
+          message.textContent = hotspot.dataset.text;
+          callout.hidden = false;
+          positionCallout(hotspot);
+        });
+      });
+
+      closeButton.addEventListener("click", closeCallout);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && activeHotspot) {
+          closeCallout();
+          activeHotspot.focus();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (activeHotspot) positionCallout(activeHotspot);
+      });
+    </script>
+  </body>
+</html>
