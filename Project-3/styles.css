@@ -15,10 +15,10 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  margin: 0;
+  margin: 5px;
   background: var(--cream);
   color: var(--espresso);
-  font-family: Arial, sans-serif;
+  font-family: prata, serif;
 }
 
 .site-header {
@@ -28,7 +28,7 @@ body {
   gap: 1.5rem;
   padding: 1rem clamp(1.25rem, 5vw, 3rem);
   background: var(--coffee);
-  font-family: Pacifico, cursive;
+  font-family: yeseva one, serif;
 }
 
 .logo {
